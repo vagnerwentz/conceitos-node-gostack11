@@ -32,9 +32,9 @@ app.post("/repositories", (request, response) => {
 
   const repository = {
     id: uuid(),
-    title,
     url,
-    techs: [techs],
+    title,
+    techs,
     likes: 0,
   };
   repositories.push(repository);
@@ -58,9 +58,10 @@ app.put("/repositories/:id", (request, response) => {
 
   const repoistory = {
     id,
-    title,
     url,
+    title,
     techs,
+    likes: 0,
   };
   repositories[repositoryIndex] = repoistory;
 
@@ -85,7 +86,7 @@ app.delete("/repositories/:id", (request, response) => {
   return response.status(204).send();
 });
 
-app.post("/repositories/:id/likes", (request, response) => {
+app.post("/repositories/:id/like", (request, response) => {
   const { id } = request.params;
 
   const repository = repositories.find((repository) => repository.id === id);
